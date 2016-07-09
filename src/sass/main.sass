@@ -1,0 +1,95 @@
+$white: #ffffff
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans)
+
+=font-details($size, $height, $spacing)
+  font-size: $size
+  line-height: $height
+  letter-spacing: $spacing
+
+html,body
+  margin: 0
+  padding: 0
+  font-size: 10px
+  font-family: 'Open Sans', sans-serif
+  color: black
+
+
+.highlight
+  background: yellow
+
+.container
+  width: 100%
+  display: flex
+  justify-content: center
+
+
+
+.spaces-sidebar
+
+
+.map_canvas
+  width: 50vw
+  height: 816px
+  border: 1px solid #333335
+  margin: 0px
+  margin-top: 0.4rem
+
+
+.pagination
+  width: 100%
+  height: 4rem
+  display: flex
+  justify-content: center
+  align-items: center
+
+.pagination__arrow
+  width: 3rem
+  height: 3rem
+  background: $white
+  border-radius: 9px
+  img
+    height: 1rem
+    width: auto
+.pagination__input
+  width: 3rem
+  height: 3rem
+  text-align: center
+  border-radius: 9px
+  box-sizing: border-box
+  margin: 0 1rem
+
+
+.spaces
+  display: flex
+  flex-grow: 1
+  flex-direction: column
+  box-sizing: border-box
+
+
+.single-space
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.28)
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.28)
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.28)
+  margin: 0.4rem
+  display: flex
+  flex: flex-grow
+  align-items: center
+  box-sizing: border-box
+
+
+.single-space__image
+  min-width: 12.433rem
+  width: auto
+  height: 70px
+  margin-right: 2rem
+
+.single-space__header
+  text-align: center
+  margin-right: 2rem
+@media (min-width: 300px) and (max-width: 768px)
+  .map_canvas
+    max-width: 100%
+    height: 450px
+    border: 1px solid #333335
+    margin-bottom: 20px
