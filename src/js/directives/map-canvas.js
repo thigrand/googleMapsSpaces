@@ -3,27 +3,29 @@ function mapCanvas(mapHelper) {
     return {
         restrict: 'E',
         replace: true,
+        scope:{
+            mapProperties: '=mapProperties',
+            highlight:'=highlight',
+        },
         link: function(scope, element, attrs) {
-            // console.log(scope.main);
             var listOfDisplayedPlaces = [];
             var markersToDraw = [];
             var existsMarkers = [];
             var myOptions = {
-                center: new google.maps.LatLng(scope.main.map.localization.center.latitude, scope.main.map.localization.center.longitude),
+                center: new google.maps.LatLng(scope.mapProperties.localization.center.latitude, scope.mapProperties.localization.center.longitude),
             };
             var bounds = new google.maps.LatLngBounds();
-            var boundA = new google.maps.LatLng(scope.main.map.localization.boundA.latitude, scope.main.map.localization.boundA.longitude);
-            var boundB = new google.maps.LatLng(scope.main.map.localization.boundB.latitude, scope.main.map.localization.boundB.longitude);
+            var boundA = new google.maps.LatLng(scope.mapProperties.localization.boundA.latitude, scope.mapProperties.localization.boundA.longitude);
+            var boundB = new google.maps.LatLng(scope.mapProperties.localization.boundB.latitude, scope.mapProperties.localization.boundB.longitude);
             var map = new google.maps.Map(document.getElementById(attrs.id), myOptions);
             setDefaultBounds();
             var infoWindow = new google.maps.InfoWindow(), marker, i;
 
             // Loop through our array of markers & place each one on the map
-            scope.$watchGroup(['main.map.markers', 'main.map.infoWindowContent'], function(markers) {
+            scope.$watchGroup(['mapProperties.markers', 'mapProperties.infoWindowContent'], function(markers) {
               markersToDraw = markers;
               //markers[0] - markers location
               //markers[1] - markers popup window
-              console.log("something changed", markers);
               clearMarkers();
                 for( i = 0; i < markers[0].length; i++ ) {
                     var position = new google.maps.LatLng(markersToDraw[0][i][1], markersToDraw[0][i][2]);
@@ -43,9 +45,10 @@ function mapCanvas(mapHelper) {
 
             function infoForMarkers(marker, i, infoWindowContent){
               return function() {
-                  scope.main.highlight = marker.id;
+                  scope.highlight = marker.id;
                   infoWindow.setContent(infoWindowContent[i]);
                   infoWindow.open(map, marker);
+                  scope.$applyAsync();
               };
             }
 

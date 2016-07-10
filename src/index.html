@@ -10,13 +10,12 @@
 <body ng-app="maps">
 
   <div ng-controller="MainController as main" class="container">
-    <map-canvas id="map-canvas" class="map_canvas"></map-canvas>
+    <map-canvas id="map-canvas" class="map_canvas" map-properties='main.map' highlight='main.highlight'></map-canvas>
     <div class="spaces-sidebar">
       <div class="spaces">
-        <div class="single-space" ng-class="main.highlightSpace(space._id)" ng-repeat="space in main.spacesForView" data-name="{{space._id}}" >
+        <div class="single-space" ng-class="{ highlight: main.highlightSpace(space._id) }"  ng-repeat="space in main.spacesForView" data-name="{{space._id}}" >
           <img src="{{space.main_photo.min_url}}" alt="" class="single-space__image">
           <h2 class='single-space__header'>{{space.name}}</h2>
-          {{space._id + " " +main.highlight}}
         </div>
       </div>
       <div class="pagination">
@@ -32,11 +31,8 @@
   </div>
 
   <!-- vendors -->
-  <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=&sensor=false&extension=.js" type="text/javascript"></script> -->
   <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBpm8-hJRbQrbHgJezdl3Cp3c0iaKUJ5WU&extension=.js'></script>
-
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-
 
   <!-- scripts -->
   <script src="./js/app.js" ></script>
