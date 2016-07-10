@@ -25,10 +25,21 @@ function MainController(apiConnector, mapHelper, paginationService, $scope) {
     main.highlight = 0;
 
     main.highlightSpace = function(id){
-      console.log(id, main.highlight);
       return id === main.highlight ? 'highlight' : '';
     };
+    $scope.$watch('main.highlight', function(nv){
+      console.log(nv);
+    });
 
+    $scope.$watch(
+        function watchHighlight( scope ) {
+            // Return the "result" of the watch expression.
+            return( main.highlight );
+        },
+        function handleHighlightChange( newValue, oldValue ) {
+            console.log( newValue );
+        }
+    );
     main.changePage = function(direction){
       main.pagination = paginationService.changePage(main.pagination, direction);
       main.reDrawMap();

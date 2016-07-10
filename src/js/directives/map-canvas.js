@@ -44,11 +44,11 @@ function mapCanvas(mapHelper) {
             function infoForMarkers(marker, i, infoWindowContent){
               return function() {
                   scope.main.highlight = marker.id;
-                  console.log("scope.main.highlight",scope.main.highlight , marker.id);
                   infoWindow.setContent(infoWindowContent[i]);
                   infoWindow.open(map, marker);
               };
             }
+
             function clearMarkers() {
               setMapOnAll(null);
               setDefaultBounds();
